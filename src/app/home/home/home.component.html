@@ -1,0 +1,362 @@
+<!-- <div>
+  <ul *ngIf="movies.length"
+    style="display: flex;flex-wrap: wrap;gap: 2rem;list-style-type:none;">
+    <li *ngFor="let movie of movies">
+      <h3>{{ movie.title }}</h3>
+      <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+        alt="{{ movie.title }}" style="width: 200px;border-radius: 12px;" />
+    </li>
+  </ul>
+</div> -->
+
+<form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm" id="userForm">
+  <h1
+    style="text-align: center; margin-bottom: 1.5rem; text-transform: uppercase">
+    Simple. Minimal. Register.
+  </h1>
+  <div
+    class="d-flex flex-wrap gap-3 justify-content-center align-items-center flex-column"
+    style="margin-top: -0.8rem;">
+    <div>
+      <img
+        [src]="profilePictureUrl"
+        alt="profile-picture"
+        *ngIf="profilePictureUrl"
+        class="profile-img" />
+    </div>
+    <div class="profile-picture-upload">
+      <!-- <label for="profilePicture" class="mb-0"
+        >Upload Picture<i class="fa-solid fa-image"></i
+      ></label> -->
+      <label for><i class="fa-solid fa-plus"></i></label>
+      <input
+        type="file"
+        id="profilePicture"
+        (change)="onFileSelected($event)"
+        accept="image/*" />
+    </div>
+  </div>
+
+  <div class="d-flex flex-wrap gap-3 justify-content-center">
+    <div class="input-wrapper">
+      <label for="name">First Name:</label>
+      <div style="position: relative; border-radius: 12px; overflow: hidden">
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          [(ngModel)]="user.name"
+          #name="ngModel"
+          (keypress)="restrictToText($event)"
+          maxlength="20"
+          class="effect-19" />
+        <span class="focus-border"></span>
+      </div>
+
+      <div
+        *ngIf="name.touched && name.invalid"
+        class="valid-text"
+        class="valid-text">
+        Name is Required
+      </div>
+    </div>
+    <div class="input-wrapper">
+      <label for="lastname">Last Name:</label>
+
+      <div style="position: relative; border-radius: 12px; overflow: hidden">
+        <input
+          type="text"
+          id="lastname"
+          name="Lastname"
+          required
+          pattern="^[a-zA-Z\s]+$"
+          class="effect-19" [maxLength]="20"
+          (keypress)="restrictToText($event)" />
+        <span class="focus-border"></span>
+      </div>
+
+      <!-- <div *ngIf="name.touched && name.invalid" class="valid-text"
+        class="valid-text">Name is
+        Required</div> -->
+    </div>
+  </div>
+  <br />
+  <div class="d-flex flex-wrap gap-3 justify-content-center">
+    <div class="input-wrapper">
+      <label for="email">Email:</label>
+      <div style="position: relative; border-radius: 12px; overflow: hidden">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          [(ngModel)]="user.email"
+          #email="ngModel"
+          (keyup)="validateMail()"
+          maxlength="90"
+          class="effect-19" />
+        <span class="focus-border"></span>
+      </div>
+
+      <div
+        *ngIf="!isEmailValid && user.email"
+        class="valid-text"
+        class="valid-text">
+        Please enter a valid email address.
+      </div>
+    </div>
+    <div class="input-wrapper" style="position: relative">
+      <label for="password">Password:</label>
+      <div style="position: relative; border-radius: 12px; overflow: hidden">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          [(ngModel)]="user.password"
+          #password="ngModel"
+          (keyup)="validatePassword()"
+          class="effect-19" />
+        <span class="focus-border"></span>
+      </div>
+
+      <i
+        class="fa-solid fa-eye"
+        [ngClass]="{ 'show-eye': passwordVisible }"
+        style="
+          position: absolute;
+          top: 44px;
+          right: 18px;
+          color: rgba(0, 0, 0, 0.7);
+          cursor: pointer;
+        "
+        (click)="passwordShow()"></i>
+      <!-- Show message if password is invalid -->
+      <div *ngIf="!isPasswordValid && user.password" class="valid-text">
+        Password must have at least <b>one uppercase</b>,
+        <b>one special character</b>, and <b>no spaces</b>.
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <div class="d-flex flex-wrap gap-3 justify-content-center">
+    <div class="input-wrapper" style="transform: translateY(-10px);">
+      <label for="gender">Gender:</label>
+      <div class="gender-radio d-flex gap-3">
+        <div class="d-flex align-items-center">
+          <input
+            type="radio"
+            name="gender"
+            id="male"
+            [(ngModel)]="user.gender"
+            #gender="ngModel"
+            value="male" />
+          <label for="male" class="mb-0">Male</label>
+        </div>
+        <div class="d-flex align-items-center">
+          <input
+            type="radio"
+            name="gender"
+            id="female"
+            [(ngModel)]="user.gender"
+            #gender="ngModel"
+            value="female" />
+          <label for="female" class="mb-0">Female</label>
+        </div>
+        <div class="d-flex align-items-center">
+          <input
+            type="radio"
+            name="gender"
+            id="other"
+            [(ngModel)]="user.gender"
+            #gender="ngModel"
+            value="other" />
+          <label for="other" class="mb-0">Other</label>
+        </div>
+      </div>
+    </div>
+    <div class="input-wrapper custom-select-wrapper">
+      <select
+        name="employment"
+        id="employment"
+        [(ngModel)]="user.employment"
+        required
+        #employment="ngModel">
+        <option value disabled selected>What best describes you ?</option>
+        <option value="Employed">Employed</option>
+        <option value="Unemployed">Unemployed</option>
+        <option value="Self Employed">Self Employed</option>
+        <option value="Other">Other</option>
+      </select>
+      <div *ngIf="employment.touched && employment.invalid" class="valid-text">
+        Employement Status is Required
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="d-flex flex-wrap gap-3 justify-content-center">
+    <div class="input-wrapper">
+      <label for="mobile">Mobile:</label>
+      <div style="position: relative; border-radius: 12px; overflow: hidden">
+        <input
+          type="text"
+          id="mobile"
+          name="mobile"
+          required
+          [(ngModel)]="user.mobile"
+          #number="ngModel"
+          (keyup)="restrictToNumbers($event)"
+          maxlength="10"
+          class="effect-19" />
+        <span class="focus-border"></span>
+      </div>
+      <div *ngIf="!isMobileValid && user.mobile" class="valid-text">
+        Please enter valid Mobile number.
+      </div>
+      <!-- <div *ngIf="number.touched && number.invalid" class="valid-text">
+        Mobile Number is Required
+      </div> -->
+    </div>
+    <div class="input-wrapper">
+      <label for="mobile">Date of Birth:</label>
+      <div style="position: relative; border-radius: 12px; overflow: hidden">
+        <input
+          type="date"
+          id="dob"
+          name="dob"
+          required
+          [(ngModel)]="user.dob"
+          #dob="ngModel"
+          class="effect-19" />
+        <span class="focus-border"></span>
+      </div>
+
+      <div *ngIf="dob.touched && dob.invalid" class="valid-text">
+        Date of Birth is Required
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="d-flex flex-wrap gap-3 justify-content-center">
+    <div class="custom-select-wrapper">
+      <!-- Search Box -->
+      <!-- <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        (input)="filterCountries()"
+        placeholder="Search country..." /> -->
+      <select
+        class="custom-select"
+        [(ngModel)]="user.country"
+        #country="ngModel"
+        name="country"
+        id="country"
+        required
+        (change)="onCountryChange(user.country)">
+        <option value disabled selected>Select a country</option>
+        <option *ngFor="let country of filteredCountries" [value]="country">
+          {{ country }}
+        </option>
+      </select>
+      <div *ngIf="country.touched && country.invalid" class="valid-text">
+        Country is Required
+      </div>
+    </div>
+    <div class="custom-select-wrapper">
+      <select
+        id="state"
+        name="state"
+        [(ngModel)]="user.state"
+        [disabled]="!user.country"
+        required
+        #state="ngModel">
+        <option value disabled selected>Select a state</option>
+        <option *ngFor="let state of filteredStates" [value]="state">
+          {{ state }}
+        </option>
+      </select>
+      <!-- <div
+        *ngIf="user.country && !user.state && !state?.touched"
+        class="valid-text"
+      >
+        Please select country first
+      </div> -->
+      <div *ngIf="state.touched && state.invalid" class="valid-text">
+        State is required
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center gap-3">
+    <button type="submit" class="submit-btn"
+      [disabled]="isSubmitting">Register</button>
+  </div>
+  <div class="copyright-text">
+    <a href="https://devgovind.netlify.app" target="_blank">
+      <p>2025&nbsp;&#169;&nbsp;Govind Bhardwaj</p>
+    </a>
+  </div>
+</form>
+
+<!-- <button (click)="loadCountries()">Get country</button> -->
+
+<!-- validation form -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  style="display: none">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Form Validation Alert
+        </h5>
+      </div>
+      <div class="modal-body">
+        <img src="/warning-sign.png" alt style="width: 110px" />
+        <p>{{ errorMessage }}</p>
+      </div>
+      <div class="modal-footer" style="transform: translateY(-12px)">
+        <button
+          type="button"
+          class="btn btn-secondary close-btn"
+          data-bs-dismiss="modal"
+          (click)="closeModal()">
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- success Modal -->
+<div #successModal style="display: none;" id="successModal"
+  class="successModal">
+  <div class="success-modal">
+    <img src="\9135401.png" alt>
+    <h2>Awesome</h2>
+    <p class="mb-0">Your account has been created successfully.</p>
+    <p>You can now explore all features and enjoy a seamless experience</p>
+    <button data-bs-dismiss="successModal"
+      (click)="successStatus()">Got it</button>
+  </div>
+</div>
+
+<!-- loader -->
+<div class="loader-wrapper" style="display: none;">
+  <div class="pl">
+    <div class="pl__outer-ring"></div>
+    <div class="pl__inner-ring"></div>
+    <div class="pl__track-cover"></div>
+    <div class="pl__ball">
+      <div class="pl__ball-texture"></div>
+      <div class="pl__ball-outer-shadow"></div>
+      <div class="pl__ball-inner-shadow"></div>
+      <div class="pl__ball-side-shadows"></div>
+    </div>
+  </div>
+</div>

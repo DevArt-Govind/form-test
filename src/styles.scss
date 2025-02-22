@@ -1,0 +1,581 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: "poppins", "sans-serif";
+  background-color: #EBECF0;
+}
+
+body,
+p,
+input,
+select,
+textarea,
+button {
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: -0.2px;
+  font-size: 16px;
+}
+
+p {
+  text-shadow: 1px 1px 1px #fff;
+}
+
+.valid-text {
+  color: red;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+form {
+  padding: 16px;
+  // width: 320px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-weight: 800;
+  color: #ebecf0;
+  text-shadow: 5px 5px 10px #babecc, -5px -5px 12px #fff;
+  -webkit-text-stroke: 1px rgb(186 190 204 / 75%);
+}
+
+.input-wrapper {
+  width: 330px;
+}
+
+.segment {
+  padding: 32px 0;
+  text-align: center;
+}
+
+button,
+input,
+select {
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 12px;
+  background-color: #ebecf0;
+  text-shadow: 1px 1px 0 #fff;
+}
+
+select {
+  width: 330px !important;
+  margin-right: 0 !important;
+}
+
+.custom-select-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.custom-select-wrapper::after {
+  content: "▼";
+  position: absolute;
+  top: 25px;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* This applies to dropdown list, but limited to some browsers */
+.custom-select option {
+  background: #ebecf0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+label {
+  display: block;
+  margin-bottom: 4px;
+  width: 100%;
+}
+
+input,
+select {
+  margin-right: 8px;
+  // margin-bottom: 2rem;
+  box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #fff;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+input:focus {
+  box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+}
+
+button {
+  color: #61677c;
+  font-weight: bold;
+  box-shadow: -5px -5px 20px #fff, 5px 5px 20px #babecc;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 2rem;
+}
+
+button:hover {
+  box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
+}
+
+button:active {
+  box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+}
+
+button .icon {
+  margin-right: 8px;
+}
+
+button.unit {
+  border-radius: 8px;
+  line-height: 0;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 8px;
+  font-size: 19.2px;
+}
+
+button.unit .icon {
+  margin-right: 0;
+}
+
+button.red {
+  display: block;
+  width: 100%;
+  color: #ae1100;
+}
+
+.submit-btn {
+  // position: absolute;
+  // left: 50%;
+  // transform: translateX(-50%);
+  width: 360px;
+  text-shadow: none;
+  background: #2c2c2cc9;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: inset 3px 3px 3px #ffffff61,
+    inset -4px -4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.input-group label {
+  margin: 0;
+  flex: 1;
+}
+
+.modal {
+  position: fixed;
+  /* background: rgba(0, 0, 0, 0.3); */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  backdrop-filter: blur(1px);
+}
+
+.modal-dialog {
+  background: #fff;
+  width: max-content;
+  padding: 0 2rem;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%) !important;
+  border-radius: 10px;
+  box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.2);
+
+  h5 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 13px;
+    margin-top: 1rem;
+    transform: translateY(-19px);
+    /* No selection provided, adding a general improvement to the CSS code */
+  }
+
+  .modal-body {
+    padding: 0;
+  }
+
+  .modal-content {
+    border: none;
+
+    .modal-header {
+      border: none;
+      justify-content: center;
+    }
+
+    .modal-footer {
+      border: none;
+      justify-content: center;
+    }
+  }
+}
+
+.close-btn {
+  background-color: unset;
+  box-shadow: none;
+  border: 2px solid;
+  padding: 0.6rem 2rem;
+  border-radius: 8px;
+  margin-top: 10px;
+
+  &:hover {
+    color: #111;
+  }
+}
+
+.show-eye {
+  color: #3f3fff !important;
+}
+
+.gender-radio {
+  background: #EBECF0;
+  box-shadow: 2px 2px 4px #babeccc9, -5px -5px 10px #ffffffa6;
+  padding: 0.6rem 0.6rem;
+  border-radius: 8px;
+
+  input {
+    -webkit-appearance: radio;
+    width: 24px;
+    height: 24px;
+    box-shadow: unset;
+    cursor: pointer;
+  }
+
+  label {
+    cursor: pointer;
+  }
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #fff;
+}
+
+.profile-picture-upload {
+  position: relative;
+  top: -35px;
+
+  label {
+    background: rgb(44 44 44 / 89%);
+    color: #fff;
+    padding: 0.6rem 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: inset 3px 3px 3px #ffffff61,
+      inset -4px -4px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  input {
+    position: absolute;
+    top: -6px;
+    left: 4px;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
+
+.copyright-text {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+
+  a {
+    color: #111;
+  }
+}
+
+.effect-19~.focus-border:after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #4c65af;
+  transition: 0.4s;
+}
+
+.effect-19~.focus-border:after {
+  top: auto;
+  bottom: 0;
+}
+
+.effect-19:focus~.focus-border:after,
+.has-content.effect-19~.focus-border:after {
+  left: 0;
+  width: 100%;
+  transition: 0.4s;
+}
+
+.consent {
+  -webkit-appearance: checkbox;
+  width: 24px;
+  height: 24px;
+  box-shadow: unset;
+}
+
+#successModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.success-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 1rem;
+  box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  border-radius: 10px;
+
+  img {
+    width: 100px;
+  }
+
+  h2 {
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  button {
+    background-color: #48be48;
+    color: #fff;
+    padding: 0.4rem 1rem;
+    text-shadow: none;
+    border-radius: 6px;
+    box-shadow: none;
+    width: 100%;
+  }
+}
+
+
+// loader
+.loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #ebecf0c9;
+}
+
+.pl,
+.pl__ball,
+.pl__ball-inner-shadow,
+.pl__ball-side-shadows,
+.pl__ball-texture,
+.pl__inner-ring,
+.pl__outer-ring,
+.pl__track-cover {
+  border-radius: 50%;
+}
+
+.pl {
+  position: absolute;
+  width: 16em;
+  height: 16em;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(1px);
+}
+
+.pl__ball,
+.pl__ball-inner-shadow,
+.pl__ball-outer-shadow,
+.pl__ball-side-shadows,
+.pl__ball-texture,
+.pl__ball-texture:before,
+.pl__inner-ring,
+.pl__outer-ring,
+.pl__track-cover {
+  position: absolute;
+}
+
+.pl__ball,
+.pl__ball-inner-shadow,
+.pl__ball-outer-shadow,
+.pl__ball-texture:before,
+.pl__track-cover {
+  animation: ball 3s linear infinite;
+}
+
+.pl__ball {
+  top: calc(50% - 1.25em);
+  left: calc(50% - 1.25em);
+  transform: rotate(0) translateY(-6.5em);
+  width: 2.5em;
+  height: 2.5em;
+}
+
+.pl__ball-inner-shadow {
+  animation-name: ballInnerShadow;
+  box-shadow:
+    0 0.1em 0.2em hsla(0, 0%, 0%, 0.3),
+    0 0 0.2em hsla(0, 0%, 0%, 0.1) inset,
+    0 -1em 0.5em hsla(0, 0%, 0%, 0.15) inset;
+  width: 100%;
+  height: 100%;
+}
+
+.pl__ball-outer-shadow {
+  animation-name: ballOuterShadow;
+  background-image: linear-gradient(hsla(0, 0%, 0%, 0.15), hsla(0, 0%, 0%, 0));
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  filter: blur(2px);
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 250%;
+  transform: rotate(20deg);
+  transform-origin: 50% 0;
+  z-index: -2;
+}
+
+.pl__ball-side-shadows {
+  background-color: hsla(0, 0%, 0%, 0.1);
+  filter: blur(2px);
+  width: 100%;
+  height: 100%;
+  transform: scale(0.75, 1.1);
+  z-index: -1;
+}
+
+.pl__ball-texture {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  transform: translate3d(0, 0, 0);
+}
+
+.pl__ball-texture:before {
+  animation-name: ballTexture;
+  animation-duration: 0.25s;
+  background: url(https://assets.codepen.io/416221/snow.jpg) 0 0 / 50% 100%;
+  content: "";
+  display: block;
+  filter: brightness(1.05);
+  top: 0;
+  right: 0;
+  width: 200%;
+  height: 100%;
+}
+
+.pl__inner-ring {
+  box-shadow:
+    0 -0.25em 0.5em hsla(0, 0%, 100%, 0.4),
+    0 0.5em 0.75em hsla(0, 0%, 100%, 0.4) inset,
+    0 0.5em 0.375em hsla(0, 0%, 0%, 0.15),
+    0 -0.5em 0.75em hsla(0, 0%, 0%, 0.15) inset;
+  top: 2.375em;
+  left: 2.375em;
+  width: calc(100% - 4.75em);
+  height: calc(100% - 4.75em);
+}
+
+.pl__outer-ring {
+  box-shadow:
+    0 -0.45em 0.375em hsla(0, 0%, 0%, 0.15),
+    0 0.5em 0.75em hsla(0, 0%, 0%, 0.15) inset,
+    0 0.25em 0.5em hsla(0, 0%, 100%, 0.4),
+    0 -0.5em 0.75em hsla(0, 0%, 100%, 0.4) inset;
+  top: 0.75em;
+  left: 0.75em;
+  width: calc(100% - 1.5em);
+  height: calc(100% - 1.5em);
+}
+
+.pl__track-cover {
+  animation-name: trackCover;
+  background-image: conic-gradient(hsl(206, 14%, 93%) 210deg, hsl(223, 0%, 3%, 0) 270deg);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Animations */
+@keyframes ball {
+  from {
+    transform: rotate(0) translateY(-6.5em);
+  }
+
+  50% {
+    transform: rotate(180deg) translateY(-6em);
+  }
+
+  to {
+    transform: rotate(360deg) translateY(-6.5em);
+  }
+}
+
+@keyframes ballInnerShadow {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes ballOuterShadow {
+  from {
+    transform: rotate(20deg);
+  }
+
+  to {
+    transform: rotate(-340deg);
+  }
+}
+
+@keyframes ballTexture {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(50%);
+  }
+}
+
+@keyframes trackCover {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
